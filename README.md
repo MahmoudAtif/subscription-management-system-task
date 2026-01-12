@@ -47,7 +47,7 @@ This project is a subscription management system built with Django and Django RE
 ### Step 1: Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/MahmoudAtif/subscription-management-system-task.git
 cd subscription-management-system-task
 ```
 
@@ -141,10 +141,13 @@ Once the server is running, you can access the interactive API documentation:
 ## API Endpoints
 
 ### Authentication
+
 - `POST /api/users/login/` - User login (returns authentication token)
 - `POST /api/users/` - User registration (public)
+- `POST /api/users/logout` - User logout
 
 ### Users
+
 - `GET /api/users/` - List all users (authenticated)
 - `GET /api/users/{id}/` - Get user details (authenticated)
 - `PUT /api/users/{id}/` - Update user (authenticated)
@@ -152,6 +155,7 @@ Once the server is running, you can access the interactive API documentation:
 - `DELETE /api/users/{id}/` - Delete user (admin only)
 
 ### Features
+
 - `GET /api/features/` - List all features (admin only)
 - `GET /api/features/{id}/` - Get feature details (admin only)
 - `POST /api/features/` - Create feature (admin only)
@@ -160,6 +164,7 @@ Once the server is running, you can access the interactive API documentation:
 - `DELETE /api/features/{id}/` - Delete feature (admin only)
 
 ### Subscription Plans
+
 - `GET /api/plans/` - List all plans (admin only)
 - `GET /api/plans/{id}/` - Get plan details (admin only)
 - `POST /api/plans/` - Create plan (admin only)
@@ -168,6 +173,7 @@ Once the server is running, you can access the interactive API documentation:
 - `DELETE /api/plans/{id}/` - Delete plan (admin only)
 
 ### User Subscriptions
+
 - `GET /api/subscriptions/` - List all subscriptions (authenticated)
 - `GET /api/subscriptions/{id}/` - Get subscription details (authenticated)
 - `POST /api/subscriptions/` - Create subscription (authenticated)
@@ -176,6 +182,7 @@ Once the server is running, you can access the interactive API documentation:
 - `DELETE /api/subscriptions/{id}/` - Delete subscription (authenticated)
 
 ### Analytics
+
 - `GET /api/analytics/` - Get analytics dashboard data (authenticated)
   - Total recurring revenue
   - Average subscription cost
