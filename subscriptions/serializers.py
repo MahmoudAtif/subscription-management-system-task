@@ -78,7 +78,7 @@ class FeatureSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Feature
-        fields = ['id', 'name', 'description', 'created_at', 'updated_at']
+        fields = ['id', 'name', 'description', 'is_active', 'created_at', 'updated_at']
         read_only_fields = ['id', 'created_at', 'updated_at']
 
 
@@ -100,6 +100,7 @@ class SubscriptionPlanSerializer(serializers.ModelSerializer):
             'price',
             'billing_cycle',
             'description',
+            'is_active',
             'features',
             'feature_ids',
             'created_at',
@@ -142,7 +143,7 @@ class UserSubscriptionSerializer(serializers.ModelSerializer):
             'plan_cost',
             'start_date',
             'end_date',
-            'is_active',
+            'status',
             'created_at',
             'updated_at'
         ]
@@ -166,5 +167,5 @@ class UserSubscriptionListSerializer(serializers.ModelSerializer):
             'plan_cost',
             'start_date',
             'end_date',
-            'is_active'
+            'status'
         ]

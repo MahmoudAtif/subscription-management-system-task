@@ -233,7 +233,7 @@ class AnalyticsDashboardView(APIView):
             total_recurring_revenue=Coalesce(
                 Sum(
                     'plan_cost',
-                    filter=Q(is_active=True)
+                    filter=Q(status='active')
                 ),
                 0,
                 output_field=FloatField(),

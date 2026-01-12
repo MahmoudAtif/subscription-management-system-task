@@ -4,15 +4,16 @@ from .models import Feature, SubscriptionPlan, UserSubscription
 
 @admin.register(Feature)
 class FeatureAdmin(admin.ModelAdmin):
-    list_display = ["name", "created_at", "updated_at"]
+    list_display = ["name", "is_active", "created_at", "updated_at"]
+    list_filter = ["is_active"]
     search_fields = ["name", "description"]
     list_per_page = 50
 
 
 @admin.register(SubscriptionPlan)
 class SubscriptionPlanAdmin(admin.ModelAdmin):
-    list_display = ["name", "price", "billing_cycle", "created_at"]
-    list_filter = ["billing_cycle", "created_at"]
+    list_display = ["name", "price", "billing_cycle", "is_active", "created_at"]
+    list_filter = ["billing_cycle", "is_active", "created_at"]
     search_fields = ["name", "description"]
     filter_horizontal = ["features"]
     list_per_page = 50
@@ -26,9 +27,9 @@ class UserSubscriptionAdmin(admin.ModelAdmin):
         "plan_cost",
         "start_date",
         "end_date",
-        "is_active"
+        "status"
     ]
-    list_filter = ["is_active", "start_date", "plan__billing_cycle"]
+    list_filter = ["status", "start_date", "plan__billing_cycle"]
     search_fields = ["user__username", "user__email", "plan__name"]
     date_hierarchy = "start_date"
     list_per_page = 50

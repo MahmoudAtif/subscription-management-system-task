@@ -144,7 +144,7 @@ Once the server is running, you can access the interactive API documentation:
 
 - `POST /api/users/login/` - User login (returns authentication token)
 - `POST /api/users/` - User registration (public)
-- `POST /api/users/logout` - User logout
+- `POST /api/users/logout/` - User logout
 
 ### Users
 

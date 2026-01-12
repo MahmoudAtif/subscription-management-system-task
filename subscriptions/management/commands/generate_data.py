@@ -123,6 +123,9 @@ class Command(BaseCommand):
 
         subscriptions_to_create = []
 
+        statuses = ['active', 'cancelled', 'suspended']
+        status_weights = [0.7, 0.2, 0.1]  # 70% active, 20% cancelled, 10% suspended
+
         for i in range(num_subscriptions):
             user = random.choice(users)
             plan = random.choice(plans)
@@ -130,8 +133,8 @@ class Command(BaseCommand):
             start_date = fake.date_between(start_date='-2y', end_date='today')
             end_date = start_date + timedelta(days=random.randint(30, 730))
 
-            # 70% chance of being active
-            is_active = random.random() > 0.3
+            # Select status based on weights
+            status = random.choices(statuses, weights=status_weights)[0]
 
             subscriptions_to_create.append(UserSubscription(
                 user=user,
@@ -139,7 +142,7 @@ class Command(BaseCommand):
                 plan_cost=plan.price + random.uniform(-5, 20),
                 start_date=start_date,
                 end_date=end_date,
-                is_active=is_active
+                status=status
             ))
 
             if len(subscriptions_to_create) >= batch_size:
