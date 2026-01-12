@@ -123,6 +123,31 @@ class UserViewSet(viewsets.ModelViewSet):
             }
         )
 
+    @extend_schema(
+        summary="User Logout",
+        description="Invalidate the authentication token for the current user. This endpoint requires authentication.",
+        responses={
+            200: OpenApiResponse(description="Logged out successfully."),
+            401: OpenApiResponse(description="Authentication required."),
+        },
+        tags=["Users"],
+    )
+    @action(
+        detail=False,
+        methods=['post'],
+        url_path='logout',
+    )
+    def logout(self, request):
+        """
+        Logout action.
+        """
+        request.user.auth_token.delete()
+        return Response(
+            {
+                'message': 'Logged out successfully'
+            }
+        )
+
 
 @extend_schema_view(
     list=extend_schema(tags=["Features"]),
@@ -179,7 +204,7 @@ class UserSubscriptionViewSet(viewsets.ModelViewSet):
     serializer_class = UserSubscriptionListSerializer
     filter_backends = [filters.SearchFilter]
     search_fields = ['user__username', 'user__email', 'plan__name']
-    
+
     def get_serializer_class(self):
         if self.action == 'retrieve':
             return UserSubscriptionSerializer
